@@ -1,7 +1,30 @@
 import { supabase } from "./supabase";
 
-const createNewWatch = async ({}) => {
+const baseUrl = import.meta.env.VITE_IMAGE_URL
 
+const login = async ({ email, password }) => {
+  const {data, error} = await supabase.auth.signInWithPassword({
+    email,
+    password
+  })
+
+  return [data, error]
+}
+
+const createNewProduct = async ({ brand, price, ref, measures, images }) => {
+  const { data, error } = await supabase
+  .from('watches')
+  .insert([
+    {
+      brand,
+      price: Number(price),
+      ref: ref,
+      measures,
+      images
+    }
+  ])
+
+  return [error, data]
 }
 
 const uploadFiles = async (files, filePath, ref) => {
@@ -9,10 +32,7 @@ const uploadFiles = async (files, filePath, ref) => {
   const images = []
   let error = null
 
-  files.forEach( async file => {
-    console.log({files})
-    const image = {...file}
-    console.log({image})
+  for await (const file of files) {
     const { data, err } = await supabase
       .storage
       .from('images')
@@ -22,19 +42,15 @@ const uploadFiles = async (files, filePath, ref) => {
         error = err
         console.log(error)
       } else {
-        console.log(data)
-        console.log(file)
-      images.push(data?.path)
+      images.push(`${baseUrl}/${data?.path}`)
     }
-  });
-
-  // for (const file of files) {
-    
-  // }
+  }
 
   return [error, images]
 }
 
 export {
-  uploadFiles
+  createNewProduct,
+  uploadFiles,
+  login
 }
