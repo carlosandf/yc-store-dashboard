@@ -1,0 +1,16 @@
+.error,
+.success {
+  font-size: 18px;
+  color: aliceblue;
+  border-radius: 8px;
+  padding: 8px;
+  box-shadow: 0 0 10px rgb(53, 53, 53);
+}
+
+.error {
+  background-color: rgb(252, 69, 45);
+}
+
+.success {
+  background-color: rgb(142, 219, 109);
+}
