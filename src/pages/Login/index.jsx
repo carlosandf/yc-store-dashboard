@@ -38,6 +38,7 @@ const Login = () => {
           type='email'
           name='email'
           placeholder='Email'
+          required
         />
         <input
           onChange={(e) => setCredentials({ ...credentials, password: e.target.value })}
@@ -45,6 +46,7 @@ const Login = () => {
           type='password'
           name='password'
           placeholder='Password'
+          required
         />
       </div>
       <button>Login</button>

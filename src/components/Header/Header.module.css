@@ -11,6 +11,7 @@
 .logoutButton {
   padding: 8px;
   font-size: 14px;
-  border: solid 1px #007aff;
+  border: solid 1px #646cff;
   background-color: transparent;
+  color: #646cff;
 }

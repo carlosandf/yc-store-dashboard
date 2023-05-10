@@ -35,21 +35,21 @@ h1 {
 
 button {
   border-radius: 8px;
-  border: 1px solid #007aff;
+  border: 1px solid #646cff;
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: transparent;
+  background-color: #646cff;
   cursor: pointer;
-  color: #007aff;
+  color: #fff;
   transition: border-color 0.25s;
   transition: all .2s;
 }
 button:hover {
-  background-color: #007aff;
-  color: #ffffff;
-  outline: 1px solid #007aff;
+  background-color: transparent;
+  color: #646cff;
+  outline: 1px solid #646cff;
 }
 button:focus,
 button:focus-visible {
@@ -60,8 +60,5 @@ button:focus-visible {
   :root {
     color: #213547;
     background-color: #ffffff;
-  }
-  button {
-    background-color: #f9f9f9;
   }
 }
