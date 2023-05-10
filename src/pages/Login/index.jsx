@@ -19,7 +19,7 @@ const Login = () => {
       const [data, error] = await login(credentials)
       if (data) {
         window.localStorage.setItem('user_id', data.user.id)
-        return navigate('/insert-product')
+        return navigate('/')
       } else {
         throw new Error(error)
       }

@@ -1,11 +1,11 @@
 .form {
   display: flex;
-  /* flex-direction: column; */
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   gap: 10px;
   width: 100%;
+  margin: 0 auto;
   max-width: 400px;
 }
 
