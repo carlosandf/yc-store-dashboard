@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Routes, Route, useNavigate } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import { supabase } from './services/supabase'
 import Login from './pages/Login'
 import InsertProduct from './pages/InsertProduct'
@@ -8,16 +8,12 @@ import './App.css'
 
 function App() {
   const [signed, setSigned] = useState(false)
-  const [session, setSession] = useState(null)
-  const navigate = useNavigate()
 
   useEffect(() => {
     supabase.auth.onAuthStateChange((event, session) => {
       if (session) {
-        navigate('/')
         setSigned(true)
       } else {
-        navigate('/login')
         setSigned(false)
       }
     })
@@ -26,8 +22,8 @@ function App() {
     <>
       <Header signed={signed} />
       <Routes>
-        <Route path='/login' element={<Login />} />
-        <Route path='/' element={<InsertProduct />} />
+        <Route path='/' element={signed ? <InsertProduct /> : <Navigate to='/login'/>} />
+        <Route path='/login' element={signed ? <Navigate to='/'/> : <Login />} />
       </Routes>
     </>
   )
