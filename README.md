@@ -1,1 +1,1 @@
-# yc-store-dashboard
+# Y&C Shop
