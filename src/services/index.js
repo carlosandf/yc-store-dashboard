@@ -3,6 +3,14 @@ import { supabase } from './supabase'
 
 const baseUrl = import.meta.env.VITE_IMAGE_URL
 
+const getAllProducts = async () => {
+  const { data: products, error } = await supabase
+    .from('products')
+    .select('*')
+
+  return [error, products]
+}
+
 const login = async ({ email, password }) => {
   const { data, error } = await supabase.auth.signInWithPassword({
     email,
@@ -55,6 +63,7 @@ const uploadFiles = async ({ files, path, ref }) => {
 
 export {
   createNewProduct,
+  getAllProducts,
   uploadFiles,
   login
 }

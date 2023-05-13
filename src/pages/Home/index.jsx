@@ -1,7 +1,10 @@
+import { ProductList } from '../../containers/ProductList'
 
 const Home = () => {
   return (
-    <div>Home</div>
+    <div>
+      <ProductList />
+    </div>
   )
 }
 

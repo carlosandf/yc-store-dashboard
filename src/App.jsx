@@ -7,6 +7,7 @@ import InsertProduct from './pages/InsertProduct'
 import Header from './components/Header'
 import './App.css'
 import Home from './pages/Home'
+import Layout from './containers/Layout'
 
 function App () {
   const [signed, setSigned] = useState(false)
@@ -23,11 +24,13 @@ function App () {
   return (
     <AppContextProvider>
       <Header signed={signed} />
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/add-product' element={signed ? <InsertProduct /> : <Navigate to='/login' />} />
-        <Route path='/login' element={signed ? <Navigate to='/add-product' /> : <Login />} />
-      </Routes>
+      <Layout>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/add-product' element={signed ? <InsertProduct /> : <Navigate to='/login' />} />
+          <Route path='/login' element={signed ? <Navigate to='/add-product' /> : <Login />} />
+        </Routes>
+      </Layout>
     </AppContextProvider>
   )
 }
