@@ -19,7 +19,7 @@ const Login = () => {
       const [data, error] = await login(credentials)
       if (data) {
         window.localStorage.setItem('user_id', data.user.id)
-        return navigate('/')
+        return navigate('/add-product')
       } else {
         throw new Error(error)
       }
@@ -33,7 +33,7 @@ const Login = () => {
       <h3>Inicia sesión ;)</h3>
       <div className={styles.credentials}>
         <input
-          onChange={(e) => setCredentials({...credentials, email: e.target.value })}
+          onChange={(e) => setCredentials({ ...credentials, email: e.target.value })}
           value={credentials.email}
           type='email'
           name='email'

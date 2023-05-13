@@ -1,4 +1,4 @@
-import React from 'react'
+import PropTypes from 'prop-types'
 import { supabase } from '../../services/supabase'
 import styles from './Header.module.css'
 
@@ -21,6 +21,10 @@ const Header = ({ signed }) => {
       }
     </header>
   )
+}
+
+Header.propTypes = {
+  signed: PropTypes.bool
 }
 
 export default Header

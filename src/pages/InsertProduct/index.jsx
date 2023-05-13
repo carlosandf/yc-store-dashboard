@@ -8,12 +8,12 @@ const INITIAL_STATE = {
   price: '',
   ref: '',
   category: '',
-  details: '',
+  details: ''
 }
 
 const InsertProduct = () => {
   const [loadind, setLoading] = useState(false)
-  const [alert, setAlert] = useState({status: '', message: '', open: false})
+  const [alert, setAlert] = useState({ status: '', message: '', open: false })
   const [data, setData] = useState(INITIAL_STATE)
   const inputFile = useRef()
   const mainData = useRef()
@@ -23,7 +23,7 @@ const InsertProduct = () => {
     try {
       setLoading(true)
       const filesValues = Object.values(inputFile.current.files)
-      const [errorOne, images] = await uploadFiles({files: filesValues, path: 'products', ref: data.ref})
+      const [errorOne, images] = await uploadFiles({ files: filesValues, path: 'products', ref: data.ref })
       const user_id = window.localStorage.getItem('user_id')
 
       const [errorTwo] = await createNewProduct({
@@ -44,7 +44,7 @@ const InsertProduct = () => {
       setData(INITIAL_STATE)
       inputFile.current.value = ''
     } catch (error) {
-      console.log(error);
+      console.log(error)
       setAlert({
         open: true,
         message: 'Ha ocurrido un error :(',
@@ -67,7 +67,7 @@ const InsertProduct = () => {
       <form onSubmit={handleSubmit} ref={mainData} className={styles.form}>
         <h3>Datos principales</h3>
         <input
-          onChange={e => setData({...data, title: e.target.value})}
+          onChange={e => setData({ ...data, title: e.target.value })}
           type="text"
           name='title'
           value={data.title}
@@ -75,7 +75,7 @@ const InsertProduct = () => {
           required
         />
         <input
-          onChange={e => setData({...data, price: e.target.value})}
+          onChange={e => setData({ ...data, price: e.target.value })}
           type="number"
           name='price'
           value={data.price}
@@ -83,7 +83,7 @@ const InsertProduct = () => {
           required
         />
         <input
-          onChange={e => setData({...data, ref: e.target.value})}
+          onChange={e => setData({ ...data, ref: e.target.value })}
           type="text"
           name='ref'
           value={data.ref}
@@ -91,7 +91,7 @@ const InsertProduct = () => {
           required
         />
         <input
-          onChange={e => setData({...data, category: e.target.value})}
+          onChange={e => setData({ ...data, category: e.target.value })}
           type="text"
           name='category'
           value={data.category}
@@ -101,7 +101,7 @@ const InsertProduct = () => {
         <h3>Detalles</h3>
         <span>Separa cada caracteristica con comas ( , )</span>
         <textarea
-          onChange={e => setData({...data, details: e.target.value})}
+          onChange={e => setData({ ...data, details: e.target.value })}
           value={data.details}
           name="details"
           required
