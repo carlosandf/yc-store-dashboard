@@ -1,26 +1,26 @@
 .card {
   width: 100%;
-  height: 150px;
+  height: 15rem;
   position: relative;
   overflow: hidden;
   display: flex;
-  border-radius: 5px;
-  padding: 5px;
+  border-radius: .5rem;
+  padding: .5rem;
   /* box-shadow: 0 0 2px #999; */
   flex-direction: row;
   justify-content: space-between;
   background-color: #45434346;
-  gap: 5px;
+  gap: .5rem;
   /* background: rgb(2,0,36); */
 /* background: linear-gradient(287deg, rgba(2,0,36,0.24580152671755728) 49%, rgba(100,108,255,0.4009978991596639) 94%); */
 }
 
 .gallery {
   width: 30%;
-  max-width: 200px;
+  max-width: 20rem;
   height: 100%;
   display: flex;
-  gap: 20px;
+  gap: 2rem;
 }
 
 .imageContainer {
@@ -34,7 +34,7 @@
 
 .infoAndAction {
   display: flex;
-  gap: 10px;
+  gap: 1rem;
   text-align: start;
   width: 70%;
   flex-direction: column;
@@ -42,24 +42,24 @@
 }
 
 .info {
-  font-size: 18px;
+  font-size: 1.8rem;
 }
 .info > .price {
   font-weight: 500;
-  font-size: 25px;
+  font-size: 2.5rem;
 }
 .info > .title {
-  font-size: 20px;
+  font-size: 2rem;
   font-weight: 100;
   color: #ffffff92;
 }
 
 .button {
   width: 100%;
-  border-radius: 1px;
-  border: 1px solid #646cff;
+  border-radius: .1rem;
+  border: .1rem solid #646cff;
   padding: 0.3em 1.1em;
-  font-size: 1em;
+  font-size: 1.5rem;
   font-weight: 500;
   font-family: inherit;
   background-color: #646cff;
@@ -72,5 +72,5 @@
 .button:hover {
   background-color: transparent;
   color: #646cff;
-  outline: 1px solid #646cff;
+  outline: .1rem solid #646cff;
 }

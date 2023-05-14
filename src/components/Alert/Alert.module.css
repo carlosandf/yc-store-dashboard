@@ -1,10 +1,10 @@
 .error,
 .success {
-  font-size: 18px;
+  font-size: 1.8rem;
   color: aliceblue;
-  border-radius: 8px;
-  padding: 8px;
-  box-shadow: 0 0 10px rgb(53, 53, 53);
+  border-radius: .8rem;
+  padding: .8rem;
+  box-shadow: 0 0 1rem rgb(53, 53, 53);
 }
 
 .error {
