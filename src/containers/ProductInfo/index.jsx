@@ -6,6 +6,8 @@ import AppContext from '../../context/AppContext'
 
 const ProductInfo = () => {
   const [product, setProduct] = useState(null)
+  const [index, setIndex] = useState(0)
+  const [curretImage, setCurrentImage] = useState(product?.images[index])
   const { state, toggleModal } = useContext(AppContext)
 
   const { id } = state.modal
@@ -18,12 +20,31 @@ const ProductInfo = () => {
         .eq('id', id)
 
       if (error === null) {
-        console.log({ data, error })
         setProduct(data[0])
+        setCurrentImage(data[0].images[0])
       }
     })()
+
+    return () => {
+      console.log(curretImage)
+    }
   }, [])
 
+  const nextImage = () => {
+    const length = product?.images?.length
+    if (index < length - 1) {
+      setIndex(index + 1)
+      setCurrentImage(product?.images[index])
+    }
+  }
+
+  const prevImage = () => {
+    if (index > 0) {
+      setIndex(index - 1)
+      setCurrentImage()
+      setCurrentImage(product?.images[index])
+    }
+  }
   return (
     <div className={styles.productInfo}>
       <div className={styles.imagesGalery}>
@@ -34,23 +55,23 @@ const ProductInfo = () => {
           +
         </button>
         <button
-          onClick={() => toggleModal({ isOpen: false, id: '' })}
+          onClick={prevImage}
           className={styles.previousButton}
         >
           &lt;
         </button>
         <button
-          onClick={() => toggleModal({ isOpen: false, id: '' })}
+          onClick={nextImage}
           className={styles.nextButton}
         >
           &gt;
         </button>
         <picture className={styles.imageContainer} key={`${product?.id}_details`}>
-          {
-            product?.images?.map(image => (
-              <img key={`${image}_image_galery-id`} src={image} alt={product.title} />
-            ))
-          }
+          <img
+            key={`${product?.images[index]}_image_galery-id`}
+            src={product?.images[index]}
+            alt={product?.title}
+          />
         </picture>
       </div>
       {product?.title}

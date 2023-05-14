@@ -58,18 +58,3 @@ button:hover {
 a {
   text-decoration: none;
 }
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-}
-
-/* Para dispositivos iOS con pantalla Retina */
-@media only screen and (-webkit-min-device-pixel-ratio: 2),
-only screen and (min--moz-device-pixel-ratio: 2),
-only screen and (-o-min-device-pixel-ratio: 2/1),
-only screen and (min-device-pixel-ratio: 2) {
-  /* Agregue aquí sus reglas CSS específicas para dispositivos iOS con pantalla Retina */
-}
