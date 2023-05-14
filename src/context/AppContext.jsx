@@ -1,17 +1,13 @@
+/* eslint-disable react-refresh/only-export-components */
 import { createContext } from 'react'
 
-const AppContext = createContext()
-
 const INITIAL_STATE = {
-  products: []
+  products: [],
+  modal: {
+    isOpen: false,
+    id: ''
+  }
 }
-
-export function AppContextProvider ({ children }) {
-  return (
-    <AppContext.Provider value={INITIAL_STATE}>
-      {children}
-    </AppContext.Provider>
-  )
-}
+const AppContext = createContext(INITIAL_STATE)
 
 export default AppContext

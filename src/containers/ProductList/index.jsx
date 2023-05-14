@@ -1,23 +1,27 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect } from 'react'
 import { getAllProducts } from '../../services'
 import ProductCard from '../../components/ProductCard'
+import styles from './ProductList.module.css'
+import AppContext from '../../context/AppContext'
+import ProductInfo from '../ProductInfo'
 
 const ProductList = () => {
-  const [productList, setProductList] = useState([])
+  const { state, saveProducts } = useContext(AppContext)
   useEffect(() => {
     (async () => {
       const [error, products] = await getAllProducts()
-
       if (!error) {
-        setProductList(products)
+        saveProducts(products)
       }
     })()
-  }, [])
+  }, [saveProducts])
   return (
-    <div>
-      {productList.map(product => (
-        <ProductCard key={product.id} {...product} />
+    <div className={styles.productsContainer}>
+      {state.products.map(product => (
+        <ProductCard key={`${product.id}_card`} {...product} />
       ))}
+
+      {state.modal.isOpen && <ProductInfo />}
     </div>
   )
 }
