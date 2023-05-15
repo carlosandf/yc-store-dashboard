@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useContext, useEffect } from 'react'
 import { getAllProducts } from '../../services'
 import ProductCard from '../../components/ProductCard'
@@ -14,7 +15,7 @@ const ProductList = () => {
         saveProducts(products)
       }
     })()
-  }, [saveProducts])
+  }, [])
   return (
     <div className={styles.productsContainer}>
       {state.products.map(product => (

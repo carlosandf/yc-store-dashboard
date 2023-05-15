@@ -1,8 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useContext, useEffect, useState } from 'react'
-import { supabase } from '../../services/supabase'
 import styles from './ProductInfo.module.css'
 import AppContext from '../../context/AppContext'
+import { getOneProduct } from '../../services'
+import Loading from '../../components/Loading'
+import formater from '../../utils/formatText'
+import urlGenerator from '../../utils/urlGenerator'
 
 const ProductInfo = () => {
   const [product, setProduct] = useState(null)
@@ -10,24 +13,21 @@ const ProductInfo = () => {
   const [curretImage, setCurrentImage] = useState(product?.images[index])
   const { state, toggleModal } = useContext(AppContext)
 
+  const formattedPrice = Number(product?.price).toLocaleString('es-CL', { style: 'currency', currency: 'CLP' })
+
   const { id } = state.modal
 
+  console.log(product)
   useEffect(() => {
     (async () => {
-      const { data, error } = await supabase
-        .from('products')
-        .select('*')
-        .eq('id', id)
+      const [error, data] = await getOneProduct(id)
 
       if (error === null) {
-        setProduct(data[0])
+        const formatDetail = formater(data[0].details)
+        setProduct({ ...data[0], details: formatDetail })
         setCurrentImage(data[0].images[0])
       }
     })()
-
-    return () => {
-      console.log(curretImage)
-    }
   }, [])
 
   const nextImage = () => {
@@ -45,27 +45,35 @@ const ProductInfo = () => {
       setCurrentImage(product?.images[index])
     }
   }
+
+  if (product === null) {
+    return (
+      <dir className={styles.productInfo}>
+        <Loading />
+      </dir>
+    )
+  }
   return (
     <div className={styles.productInfo}>
-      <div className={styles.imagesGalery}>
-        <button
+      <section className={styles.imagesGalery}>
+        <p
           onClick={() => toggleModal({ isOpen: false, id: '' })}
           className={styles.closeButton}
         >
           +
-        </button>
-        <button
+        </p>
+        <p
           onClick={prevImage}
           className={styles.previousButton}
         >
           &lt;
-        </button>
-        <button
+        </p>
+        <p
           onClick={nextImage}
           className={styles.nextButton}
         >
           &gt;
-        </button>
+        </p>
         <picture className={styles.imageContainer} key={`${product?.id}_details`}>
           <img
             key={`${product?.images[index]}_image_galery-id`}
@@ -73,8 +81,29 @@ const ProductInfo = () => {
             alt={product?.title}
           />
         </picture>
-      </div>
-      {product?.title}
+      </section>
+      <section className={styles.productInfo_detail}>
+        <div className={styles.info}>
+          <p className={styles.info_title}>{product?.title}</p>
+          <p className={styles.info_price}>{formattedPrice}</p>
+        </div>
+        <div className={styles.productDetails}>
+          {
+            product?.details.map(detai => (
+              <div key={`${detai[0]}_${product.rerence}`}>
+                <p className={styles.itemDetail}>
+                  <b className={styles.detail_label}>-{' '} {detai[0]}{detai[1] && ':'}</b>
+                  {' '}
+                  <span className={styles.detail_value}>{detai[1]}</span>
+                </p>
+              </div>
+            ))
+          }
+        </div>
+      </section>
+      <section className={styles.actions}>
+        <a href={urlGenerator(product.reference, formattedPrice, curretImage)} target='_blank' rel="noreferrer">Hacer pedido</a>
+      </section>
     </div>
   )
 }
