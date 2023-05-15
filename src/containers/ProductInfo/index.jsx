@@ -17,7 +17,6 @@ const ProductInfo = () => {
 
   const { id } = state.modal
 
-  console.log(product)
   useEffect(() => {
     (async () => {
       const [error, data] = await getOneProduct(id)
@@ -45,10 +44,6 @@ const ProductInfo = () => {
       setCurrentImage(product?.images[index - 1])
     }
   }
-
-  useEffect(() => {
-    console.log(curretImage)
-  }, [curretImage])
 
   if (product === null) {
     return (
