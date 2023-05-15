@@ -47,7 +47,7 @@ const ProductInfo = () => {
 
   const closeModal = () => {
     toggleModal({ isOpen: false, id: '' })
-    window.document.body.style.overflowY = 'auto'
+    window.document.body.style.overflow = 'auto'
   }
 
   if (product === null) {

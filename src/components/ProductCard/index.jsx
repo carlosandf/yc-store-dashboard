@@ -8,7 +8,7 @@ const ProductCard = ({ images, price, title, id }) => {
 
   const handLeClick = () => {
     toggleModal({ isOpen: true, id })
-    window.document.body.style.overflowY = 'hidden'
+    window.document.body.style.overflow = 'hidden'
   }
   return (
     <div className={styles.card}>
