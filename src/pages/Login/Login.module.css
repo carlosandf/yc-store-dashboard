@@ -7,6 +7,7 @@
   width: 100%;
   margin: 0 auto;
   max-width: 40rem;
+  padding: 2rem;
 }
 
 .form input {
@@ -19,6 +20,7 @@
 
 .form button {
   width: 100%;
+  font-size: 1.5rem;
   padding: 1.4rem;
 }
 

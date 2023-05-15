@@ -6,7 +6,7 @@ import styles from './InsertProduct.module.css'
 const INITIAL_STATE = {
   title: '',
   price: '',
-  ref: '',
+  reference: '',
   category: '',
   details: ''
 }
@@ -23,7 +23,7 @@ const InsertProduct = () => {
     try {
       setLoading(true)
       const filesValues = Object.values(inputFile.current.files)
-      const [errorOne, images] = await uploadFiles({ files: filesValues, path: 'products', ref: data.ref })
+      const [errorOne, images] = await uploadFiles({ files: filesValues, path: 'products', reference: data.reference })
       const user_id = window.localStorage.getItem('user_id')
 
       const [errorTwo] = await createNewProduct({
@@ -71,7 +71,7 @@ const InsertProduct = () => {
           type="text"
           name='title'
           value={data.title}
-          placeholder='Marca'
+          placeholder='Titulo'
           required
         />
         <input
@@ -83,10 +83,10 @@ const InsertProduct = () => {
           required
         />
         <input
-          onChange={e => setData({ ...data, ref: e.target.value })}
+          onChange={e => setData({ ...data, reference: e.target.value })}
           type="text"
           name='ref'
-          value={data.ref}
+          value={data.reference}
           placeholder='Referencia'
           required
         />

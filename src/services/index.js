@@ -29,14 +29,14 @@ const login = async ({ email, password }) => {
   return [data, error]
 }
 
-const createNewProduct = async ({ title, price, ref, category, details, images, user_id }) => {
+const createNewProduct = async ({ title, price, reference, category, details, images, user_id }) => {
   const { data, error } = await supabase
     .from('products')
     .insert([
       {
         title,
         price: Number(price),
-        ref,
+        reference,
         category,
         details,
         images,
@@ -47,7 +47,7 @@ const createNewProduct = async ({ title, price, ref, category, details, images, 
   return [error, data]
 }
 
-const uploadFiles = async ({ files, path, ref }) => {
+const uploadFiles = async ({ files, path, reference }) => {
   console.log(files)
   const images = []
   let error = null
@@ -57,7 +57,7 @@ const uploadFiles = async ({ files, path, ref }) => {
     const { data, err } = await supabase
       .storage
       .from('images')
-      .upload(`/${path}/${ref}_00${images.length}.png`, file)
+      .upload(`/${path}/${reference}_00${images.length}.png`, file)
 
     if (err) {
       error = err

@@ -9,6 +9,7 @@
   padding: 10px;
   display: flex;
   flex-direction: column;
+  padding-bottom: 10rem;
   gap: 25px;
 }
 
@@ -110,7 +111,12 @@
 }
 
 .actions {
-  margin: 1rem 0;
+  padding: 1.5rem;
+  position: fixed;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: #242424;
 }
 .actions > a {
   display: block;
@@ -119,10 +125,11 @@
   padding: 0.6em 1.2em;
   font-size: 1.6rem;
   font-weight: 500;
-  width: 100%;
+  width: 90vw;
   font-family: inherit;
-  background-color: transparent;
+  background-color: #646cff;
   cursor: pointer;
-  color: #646cff;
+  color: #fff;
   transition: all .2s;
+  margin: auto;
 }
