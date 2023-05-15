@@ -10,7 +10,7 @@ import urlGenerator from '../../utils/urlGenerator'
 const ProductInfo = () => {
   const [product, setProduct] = useState(null)
   const [index, setIndex] = useState(0)
-  const [curretImage, setCurrentImage] = useState(product?.images[index])
+  const [curretImage, setCurrentImage] = useState(product?.images[0])
   const { state, toggleModal } = useContext(AppContext)
 
   const formattedPrice = Number(product?.price).toLocaleString('es-CL', { style: 'currency', currency: 'CLP' })
@@ -34,7 +34,7 @@ const ProductInfo = () => {
     const length = product?.images?.length
     if (index < length - 1) {
       setIndex(index + 1)
-      setCurrentImage(product?.images[index])
+      setCurrentImage(product?.images[index + 1])
     }
   }
 
@@ -42,9 +42,13 @@ const ProductInfo = () => {
     if (index > 0) {
       setIndex(index - 1)
       setCurrentImage()
-      setCurrentImage(product?.images[index])
+      setCurrentImage(product?.images[index - 1])
     }
   }
+
+  useEffect(() => {
+    console.log(curretImage)
+  }, [curretImage])
 
   if (product === null) {
     return (
