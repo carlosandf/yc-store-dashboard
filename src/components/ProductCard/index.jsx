@@ -1,14 +1,12 @@
 import styles from './ProductCard.module.css'
-import { useContext } from 'react'
-import AppContext from '../../context/AppContext'
+import { useNavigate } from 'react-router-dom'
 
 const ProductCard = ({ images, price, title, id }) => {
-  const { toggleModal } = useContext(AppContext)
   const formattedPrice = Number(price).toLocaleString('es-CL', { style: 'currency', currency: 'CLP' })
+  const navigate = useNavigate()
 
   const handLeClick = () => {
-    toggleModal({ isOpen: true, id })
-    window.document.body.style.overflow = 'hidden'
+    navigate(`/product/${id}`)
   }
   return (
     <div className={styles.card}>

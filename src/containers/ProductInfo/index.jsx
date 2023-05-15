@@ -1,21 +1,20 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import styles from './ProductInfo.module.css'
-import AppContext from '../../context/AppContext'
 import { getOneProduct } from '../../services'
 import Loading from '../../components/Loading'
 import formater from '../../utils/formatText'
 import urlGenerator from '../../utils/urlGenerator'
+import { useNavigate, useParams } from 'react-router-dom'
 
 const ProductInfo = () => {
   const [product, setProduct] = useState(null)
   const [index, setIndex] = useState(0)
   const [curretImage, setCurrentImage] = useState(product?.images[0])
-  const { state, toggleModal } = useContext(AppContext)
+  const navigate = useNavigate()
+  const { id } = useParams()
 
   const formattedPrice = Number(product?.price).toLocaleString('es-CL', { style: 'currency', currency: 'CLP' })
-
-  const { id } = state.modal
 
   useEffect(() => {
     (async () => {
@@ -46,8 +45,7 @@ const ProductInfo = () => {
   }
 
   const closeModal = () => {
-    toggleModal({ isOpen: false, id: '' })
-    window.document.body.style.overflow = 'auto'
+    navigate('/')
   }
 
   if (product === null) {
