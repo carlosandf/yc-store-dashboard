@@ -27,11 +27,9 @@ html {
 
 body {
   margin: 0;
-  position: relative;
   display: flex;
   place-items: center;
   min-width: 32rem;
-  z-index: -2;
 }
 
 h1 {
