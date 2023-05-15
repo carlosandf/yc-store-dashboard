@@ -4,7 +4,6 @@ import { getAllProducts } from '../../services'
 import ProductCard from '../../components/ProductCard'
 import styles from './ProductList.module.css'
 import AppContext from '../../context/AppContext'
-import ProductInfo from '../ProductInfo'
 
 const ProductList = () => {
   const { state, saveProducts } = useContext(AppContext)
@@ -21,8 +20,6 @@ const ProductList = () => {
       {state.products.map(product => (
         <ProductCard key={`${product.id}_card`} {...product} />
       ))}
-
-      {state.modal.isOpen && <ProductInfo />}
     </div>
   )
 }

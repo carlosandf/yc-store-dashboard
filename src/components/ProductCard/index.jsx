@@ -6,6 +6,10 @@ const ProductCard = ({ images, price, title, id }) => {
   const { toggleModal } = useContext(AppContext)
   const formattedPrice = Number(price).toLocaleString('es-CL', { style: 'currency', currency: 'CLP' })
 
+  const handLeClick = () => {
+    toggleModal({ isOpen: true, id })
+    window.document.body.style.overflowY = 'hidden'
+  }
   return (
     <div className={styles.card}>
       <div className={styles.gallery}>
@@ -21,7 +25,7 @@ const ProductCard = ({ images, price, title, id }) => {
         <div className={styles.action}>
           <button
             className={styles.button}
-            onClick={() => toggleModal({ isOpen: true, id })}
+            onClick={handLeClick}
           >
             Ver detalles
           </button>

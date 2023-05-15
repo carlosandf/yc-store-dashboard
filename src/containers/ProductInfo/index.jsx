@@ -45,6 +45,11 @@ const ProductInfo = () => {
     }
   }
 
+  const closeModal = () => {
+    toggleModal({ isOpen: false, id: '' })
+    window.document.body.style.overflowY = 'auto'
+  }
+
   if (product === null) {
     return (
       <dir className={styles.productInfo}>
@@ -56,7 +61,7 @@ const ProductInfo = () => {
     <div className={styles.productInfo}>
       <section className={styles.imagesGalery}>
         <p
-          onClick={() => toggleModal({ isOpen: false, id: '' })}
+          onClick={closeModal}
           className={styles.closeButton}
         >
           +
