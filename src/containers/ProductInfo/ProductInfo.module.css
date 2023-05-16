@@ -4,14 +4,12 @@
   width: 100%;
   min-height: 100vh;
   background-color: #242424;
-  overflow-y: scroll;
   overflow-x: clip;
   padding: 10px;
   display: flex;
   flex-direction: column;
   padding-bottom: 10rem;
   gap: 25px;
-  z-index: 100;
 }
 
 .imagesGalery {
@@ -113,7 +111,7 @@
 
 .actions {
   padding: 1.5rem;
-  position: fixed;
+  position: sticky;
   right: 0;
   left: 0;
   bottom: 0;
@@ -126,7 +124,7 @@
   padding: 0.6em 1.2em;
   font-size: 1.6rem;
   font-weight: 500;
-  width: 90vw;
+  width: 100%;
   font-family: inherit;
   background-color: #646cff;
   cursor: pointer;
