@@ -9,7 +9,7 @@ const ProductCard = ({ images, price, title, id }) => {
     navigate(`/product/${id}`)
   }
   return (
-    <div className={styles.card}>
+    <div onClick={handLeClick} className={styles.card}>
       <div className={styles.gallery}>
         <picture className={styles.imageContainer} key={`${images[0]}_card`}>
           <img className={styles.cardImage} src={images[0]} alt='' />
@@ -19,14 +19,6 @@ const ProductCard = ({ images, price, title, id }) => {
         <div className={styles.info}>
           <p className={styles.price}>{formattedPrice}</p>
           <p className={styles.title}>{title}</p>
-        </div>
-        <div className={styles.action}>
-          <button
-            className={styles.button}
-            onClick={handLeClick}
-          >
-            Ver detalles
-          </button>
         </div>
       </section>
     </div>

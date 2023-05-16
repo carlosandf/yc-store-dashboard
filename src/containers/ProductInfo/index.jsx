@@ -64,18 +64,22 @@ const ProductInfo = () => {
         >
           +
         </p>
-        <p
-          onClick={prevImage}
-          className={styles.previousButton}
-        >
-          &lt;
-        </p>
-        <p
-          onClick={nextImage}
-          className={styles.nextButton}
-        >
-          &gt;
-        </p>
+        {product.images.length > 1 && (
+          <>
+            <p
+              onClick={prevImage}
+              className={styles.previousButton}
+            >
+              &lt;
+            </p>
+            <p
+              onClick={nextImage}
+              className={styles.nextButton}
+            >
+              &gt;
+            </p>
+          </>
+        )}
         <picture className={styles.imageContainer} key={`${product?.id}_details`}>
           <img
             key={`${product?.images[index]}_image_galery-id`}
