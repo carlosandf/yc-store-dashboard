@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'
 import { supabase } from '../../services/supabase'
+import Icon from '../Icon'
 import styles from './Header.module.css'
 
 const Header = ({ signed }) => {
@@ -11,6 +12,9 @@ const Header = ({ signed }) => {
   }
   return (
     <header className={styles.header}>
+      <div className={styles.menuButtom}>
+        <Icon type='hamburger' />
+      </div>
       {signed && (
         <button
           className={styles.logoutButton}
@@ -19,6 +23,9 @@ const Header = ({ signed }) => {
           Cerrar sesion
         </button>)
       }
+      <section>
+        <input type="text" />
+      </section>
     </header>
   )
 }

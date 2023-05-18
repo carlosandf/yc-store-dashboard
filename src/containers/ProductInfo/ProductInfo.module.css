@@ -23,25 +23,17 @@
 .previousButton,
 .nextButton {
   position: absolute;
-  padding: .45rem;
+  padding: .8rem;
   width: 4rem;
   height: 4rem;
-  line-height: .5;
-  place-content: center;
   display: flex;
   border-radius: 5rem;
-  border: none;
   background: #928e8e8e;
   opacity: .8;
-  color: #fff;
-  font-weight: 200;
-  outline: none;
   cursor: pointer;
 }
 
 .closeButton {
-  font-size: 4.8rem;
-  transform: rotate(45deg);
   top: 0;
   right: 0;
 }

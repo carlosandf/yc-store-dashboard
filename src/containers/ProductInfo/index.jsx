@@ -6,6 +6,7 @@ import Loading from '../../components/Loading'
 import formater from '../../utils/formatText'
 import urlGenerator from '../../utils/urlGenerator'
 import { useNavigate, useParams } from 'react-router-dom'
+import Icon from '../../components/Icon'
 
 const ProductInfo = () => {
   const [product, setProduct] = useState(null)
@@ -58,26 +59,32 @@ const ProductInfo = () => {
   return (
     <div className={styles.productInfo}>
       <section className={styles.imagesGalery}>
-        <p
+        <div
           onClick={closeModal}
           className={styles.closeButton}
         >
-          +
-        </p>
+          <Icon type='close' />
+        </div>
         {product.images.length > 1 && (
           <>
-            <p
-              onClick={prevImage}
-              className={styles.previousButton}
-            >
-              &lt;
-            </p>
-            <p
-              onClick={nextImage}
-              className={styles.nextButton}
-            >
-              &gt;
-            </p>
+            {
+              index > 0 && (
+                <div
+                  onClick={prevImage}
+                  className={styles.previousButton}>
+                  <Icon type='arrow left' />
+                </div>
+              )
+            }
+            {
+              index < product.images.length - 1 && (
+                <div
+                  onClick={nextImage}
+                  className={styles.nextButton}>
+                  <Icon type='arrow right' />
+                </div>
+              )
+            }
           </>
         )}
         <picture className={styles.imageContainer} key={`${product?.id}_details`}>
