@@ -1,16 +1,18 @@
+.mainContainer {
+  width: 100vw;
+}
 .productInfo {
-  position: absolute;
+  position: relative;
   inset: 0;
   width: 100%;
-  max-width: 40rem;
-  min-height: 100vh;
+  max-width: 50rem;
   background-color: #242424;
   overflow-x: clip;
   padding: 10px;
   display: flex;
   flex-direction: column;
-  padding-bottom: 10rem;
   gap: 25px;
+  z-index: 2;
 }
 
 .imagesGalery {
@@ -120,13 +122,13 @@
 .actions > a {
   display: block;
   border-radius: 0.2rem;
-  border: 0.1rem solid #646cff;
+  border: none;
   padding: 0.6em 1.2em;
   font-size: 1.6rem;
   font-weight: 500;
   width: 100%;
   font-family: inherit;
-  background-color: #646cff;
+  background: var(--gradient);
   cursor: pointer;
   color: #fff;
   transition: all .2s;
