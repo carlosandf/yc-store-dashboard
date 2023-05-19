@@ -57,66 +57,68 @@ const ProductInfo = () => {
     )
   }
   return (
-    <div className={styles.productInfo}>
-      <section className={styles.imagesGalery}>
-        <div
-          onClick={closeModal}
-          className={styles.closeButton}
-        >
-          <Icon type='close' />
-        </div>
-        {product.images.length > 1 && (
-          <>
+    <div className={styles.mainContainer}>
+      <div className={styles.productInfo}>
+        <section className={styles.imagesGalery}>
+          <div
+            onClick={closeModal}
+            className={styles.closeButton}
+          >
+            <Icon type='close' />
+          </div>
+          {product.images.length > 1 && (
+            <>
+              {
+                index > 0 && (
+                  <div
+                    onClick={prevImage}
+                    className={styles.previousButton}>
+                    <Icon type='arrow left' />
+                  </div>
+                )
+              }
+              {
+                index < product.images.length - 1 && (
+                  <div
+                    onClick={nextImage}
+                    className={styles.nextButton}>
+                    <Icon type='arrow right' />
+                  </div>
+                )
+              }
+            </>
+          )}
+          <picture className={styles.imageContainer} key={`${product?.id}_details`}>
+            <img
+              key={`${product?.images[index]}_image_galery-id`}
+              src={product?.images[index]}
+              alt={product?.title}
+            />
+          </picture>
+        </section>
+        <section className={styles.productInfo_detail}>
+          <div className={styles.info}>
+            <p className={styles.info_title}>{product?.title}</p>
+            <p className={styles.info_price}>{formattedPrice}</p>
+          </div>
+          <div className={styles.productDetails}>
             {
-              index > 0 && (
-                <div
-                  onClick={prevImage}
-                  className={styles.previousButton}>
-                  <Icon type='arrow left' />
+              product?.details.map(detai => (
+                <div key={`${detai[0]}_${product.rerence}`}>
+                  <p className={styles.itemDetail}>
+                    <b className={styles.detail_label}>-{' '} {detai[0]}{detai[1] && ':'}</b>
+                    {' '}
+                    <span className={styles.detail_value}>{detai[1]}</span>
+                  </p>
                 </div>
-              )
+              ))
             }
-            {
-              index < product.images.length - 1 && (
-                <div
-                  onClick={nextImage}
-                  className={styles.nextButton}>
-                  <Icon type='arrow right' />
-                </div>
-              )
-            }
-          </>
-        )}
-        <picture className={styles.imageContainer} key={`${product?.id}_details`}>
-          <img
-            key={`${product?.images[index]}_image_galery-id`}
-            src={product?.images[index]}
-            alt={product?.title}
-          />
-        </picture>
-      </section>
-      <section className={styles.productInfo_detail}>
-        <div className={styles.info}>
-          <p className={styles.info_title}>{product?.title}</p>
-          <p className={styles.info_price}>{formattedPrice}</p>
-        </div>
-        <div className={styles.productDetails}>
-          {
-            product?.details.map(detai => (
-              <div key={`${detai[0]}_${product.rerence}`}>
-                <p className={styles.itemDetail}>
-                  <b className={styles.detail_label}>-{' '} {detai[0]}{detai[1] && ':'}</b>
-                  {' '}
-                  <span className={styles.detail_value}>{detai[1]}</span>
-                </p>
-              </div>
-            ))
-          }
-        </div>
-      </section>
-      <section className={styles.actions}>
-        <a href={urlGenerator(product.reference, formattedPrice, curretImage)} target='_blank' rel="noreferrer">Hacer pedido</a>
-      </section>
+          </div>
+        </section>
+        <section className={styles.actions}>
+          <a href={urlGenerator(product.reference, formattedPrice, curretImage)} target='_blank' rel="noreferrer">Hacer pedido</a>
+        </section>
+      </div>
     </div>
   )
 }

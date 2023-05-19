@@ -20,6 +20,15 @@ const getOneProduct = async (id) => {
   return [error, data]
 }
 
+const getProductByCategory = async (category) => {
+  const { data, error } = await supabase
+    .from('products')
+    .select('*')
+    .eq('category', category)
+
+  return [error, data]
+}
+
 const login = async ({ email, password }) => {
   const { data, error } = await supabase.auth.signInWithPassword({
     email,
@@ -71,6 +80,7 @@ const uploadFiles = async ({ files, path, reference }) => {
 }
 
 export {
+  getProductByCategory,
   createNewProduct,
   getAllProducts,
   getOneProduct,

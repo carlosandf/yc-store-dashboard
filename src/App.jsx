@@ -31,9 +31,10 @@ function App () {
       <Layout>
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/add-product' element={signed ? <InsertProduct /> : <Navigate to='/login' />} />
           <Route path='/login' element={signed ? <Navigate to='/add-product' /> : <Login />} />
-          <Route path='/product/:id' element={<ProductInfo />} />
+          <Route path='/add-product' element={signed ? <InsertProduct /> : <Navigate to='/login' />} />
+          <Route path='/product/:category' element={<Home />} />
+          <Route path='/product/:category/:id' element={<ProductInfo />} />
         </Routes>
       </Layout>
     </AppContext.Provider>

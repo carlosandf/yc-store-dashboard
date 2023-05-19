@@ -1,28 +1,22 @@
 import PropTypes from 'prop-types'
-import { supabase } from '../../services/supabase'
 import Icon from '../Icon'
 import styles from './Header.module.css'
+import { useState } from 'react'
+import Menu from '../Menu'
 
 const Header = ({ signed }) => {
-  const logout = async () => {
-    const { error } = await supabase.auth.signOut()
-    if (!error) {
-      window.localStorage.removeItem('user_id')
-    }
-  }
+  const [toggle, setToggle] = useState(false)
+
   return (
     <header className={styles.header}>
-      <div className={styles.menuButtom}>
-        <Icon type='hamburger' />
+      <div onClick={() => setToggle(!toggle)} className={styles.menuButtom}>
+        <Icon type={toggle ? 'close' : 'hamburger'} />
       </div>
-      {signed && (
-        <button
-          className={styles.logoutButton}
-          onClick={logout}
-        >
-          Cerrar sesion
-        </button>)
-      }
+      <Menu
+        signed={signed}
+        toggle={toggle}
+        setToggle={setToggle}
+      />
       <section>
         <input type="text" />
       </section>
