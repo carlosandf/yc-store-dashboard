@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useContext, useEffect } from 'react'
 import { getAllProducts, getProductByCategory } from '../../services'
 import ProductCard from '../../components/ProductCard'

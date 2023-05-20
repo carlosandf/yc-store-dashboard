@@ -1,15 +1,16 @@
 import { useState } from 'react'
 
-const initialState = {
+export const defaultState = {
   products: [],
   modal: {
     isOpen: false,
     id: ''
-  }
+  },
+  signed: false
 }
 
 const useInitialState = () => {
-  const [state, setState] = useState(initialState)
+  const [state, setState] = useState(defaultState)
 
   const saveProducts = payload => {
     setState(prevState => ({
@@ -25,8 +26,16 @@ const useInitialState = () => {
     }))
   }
 
+  const setSigned = payload => {
+    setState(prevState => ({
+      ...prevState,
+      signed: payload
+    }))
+  }
+
   return {
     state,
+    setSigned,
     toggleModal,
     saveProducts
   }

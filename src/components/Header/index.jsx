@@ -4,7 +4,7 @@ import styles from './Header.module.css'
 import { useState } from 'react'
 import Menu from '../Menu'
 
-const Header = ({ signed }) => {
+const Header = () => {
   const [toggle, setToggle] = useState(false)
 
   return (
@@ -13,7 +13,6 @@ const Header = ({ signed }) => {
         <Icon type={toggle ? 'close' : 'hamburger'} />
       </div>
       <Menu
-        signed={signed}
         toggle={toggle}
         setToggle={setToggle}
       />
