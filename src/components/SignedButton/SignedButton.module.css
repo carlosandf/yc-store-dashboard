@@ -1,0 +1,6 @@
+.logoutButton {
+  border: none;
+  background: transparent;
+  padding: .8rem;
+  color: var(--primary-color);
+}
