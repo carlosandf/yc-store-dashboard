@@ -1,33 +1,33 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { supabase } from './services/supabase'
-import AppContext from './context/AppContext.jsx'
 import InsertProduct from './pages/InsertProduct'
 import ProductInfo from './containers/ProductInfo'
 import Login from './pages/Login'
 import Header from './components/Header'
 import Home from './pages/Home'
 import Layout from './containers/Layout'
-import useInitialState from './hooks/useInitialState'
+import AppContext from './context/AppContext'
 import './App.css'
 
 function App () {
-  const [signed, setSigned] = useState(false)
-
-  const initialState = useInitialState()
+  const { state, setSigned } = useContext(AppContext)
+  const { signed } = state
 
   useEffect(() => {
     supabase.auth.onAuthStateChange((event, session) => {
       if (session) {
         setSigned(true)
+        console.log(state)
       } else {
         setSigned(false)
       }
     })
   }, [])
+
   return (
-    <AppContext.Provider value={initialState}>
-      <Header signed={signed} />
+    <>
+      <Header />
       <Layout>
         <Routes>
           <Route path='/' element={<Home />} />
@@ -37,7 +37,7 @@ function App () {
           <Route path='/product/:category/:id' element={<ProductInfo />} />
         </Routes>
       </Layout>
-    </AppContext.Provider>
+    </>
   )
 }
 
