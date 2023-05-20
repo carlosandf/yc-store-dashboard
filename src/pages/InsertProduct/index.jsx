@@ -5,6 +5,7 @@ import styles from './InsertProduct.module.css'
 
 const INITIAL_STATE = {
   title: '',
+  brand: '',
   price: '',
   reference: '',
   category: '',
@@ -72,6 +73,14 @@ const InsertProduct = () => {
           name='title'
           value={data.title}
           placeholder='Titulo'
+          required
+        />
+        <input
+          onChange={e => setData({ ...data, brand: e.target.value })}
+          type="text"
+          name='brand'
+          value={data.brand}
+          placeholder='Marca'
           required
         />
         <input

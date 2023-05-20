@@ -18,7 +18,6 @@ function App () {
     supabase.auth.onAuthStateChange((event, session) => {
       if (session) {
         setSigned(true)
-        console.log(state)
       } else {
         setSigned(false)
       }
