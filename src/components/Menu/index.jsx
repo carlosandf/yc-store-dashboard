@@ -1,6 +1,6 @@
-import { Link, useNavigate } from 'react-router-dom'
-import { supabase } from '../../services/supabase'
+import { Link } from 'react-router-dom'
 import styles from './Menu.module.css'
+import SignedButton from '../SignedButton'
 
 const links = [
   {
@@ -13,15 +13,7 @@ const links = [
   }
 ]
 
-const Menu = ({ toggle, setToggle, categories, signed }) => {
-  const navigate = useNavigate()
-  const logout = async () => {
-    const { error } = await supabase.auth.signOut()
-    if (!error) {
-      window.localStorage.removeItem('user_id')
-      navigate('/')
-    }
-  }
+const Menu = ({ toggle, setToggle, categories }) => {
   return (
     <nav className={`${styles.nav} ${!toggle && styles.hidden}`}>
       <div className={styles.logoContainer}>
@@ -42,15 +34,8 @@ const Menu = ({ toggle, setToggle, categories, signed }) => {
       <div></div>
       <div></div>
 
-      <div>
-        {signed && (
-          <button
-            className={styles.logoutButton}
-            onClick={logout}
-          >
-            Cerrar sesion
-          </button>)
-        }
+      <div onClick={() => setToggle(!toggle)}>
+        <SignedButton />
       </div>
     </nav>
   )
