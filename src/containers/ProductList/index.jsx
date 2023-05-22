@@ -4,7 +4,6 @@ import ProductCard from '../../components/ProductCard'
 import styles from './ProductList.module.css'
 import AppContext from '../../context/AppContext'
 import { useParams } from 'react-router-dom'
-import Loading from '../../components/Loading'
 
 const ProductList = ({ path }) => {
   const { state, saveProducts } = useContext(AppContext)
