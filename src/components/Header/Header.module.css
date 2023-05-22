@@ -25,3 +25,57 @@
 .menuButtom:hover {
   background: #91919179;
 }
+
+.wrapperButtonContainer > button {
+  padding: 0.5rem 0.8rem;
+  font-size: 1.3rem;
+  border: 1px solid var(--primary-color);
+  background: transparent;
+  color: var(--primary-color);
+}
+
+.filterForPrice {
+  border-radius: 0.5rem;
+  max-width: 30rem;
+  display: flex;
+  gap: 1rem;
+  height: 40vh;
+  text-align: start;
+  max-height: 25rem;
+  position: absolute;
+  top: 100%;
+  border: 1px solid #4a4a4a;
+  right: 1rem;
+  flex-direction: column;
+  background: #242424;
+  padding: 2rem;
+  box-shadow: -5px 9px 15px #221d1d;
+  justify-content: space-between;
+}
+.filterForPrice > button {
+  padding: .5rem;
+  font-size: 1.4rem;
+}
+
+.inputContainer {
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.inputContainer > input {
+  width: 15rem;
+  padding: 0.5rem;
+  border: 0.1rem solid #838383;
+  border-radius: 0.8rem;
+  text-align: center;
+  background-color: #242424;
+}
+
+.message {
+  font-size: 1.5rem;
+}

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 export const defaultState = {
+  filterProducts: [],
   products: [],
   modal: {
     isOpen: false,
@@ -16,6 +17,13 @@ const useInitialState = () => {
     setState(prevState => ({
       ...prevState,
       products: [...payload]
+    }))
+  }
+
+  const saveFilterProducts = payload => {
+    setState(prevState => ({
+      ...prevState,
+      filterProducts: payload
     }))
   }
 
@@ -37,7 +45,8 @@ const useInitialState = () => {
     state,
     setSigned,
     toggleModal,
-    saveProducts
+    saveProducts,
+    saveFilterProducts
   }
 }
 

@@ -6,6 +6,7 @@ import ProductInfo from './containers/ProductInfo'
 import Login from './pages/Login'
 import Header from './components/Header'
 import Home from './pages/Home'
+import Filtered from './pages/Filtered'
 import Layout from './containers/Layout'
 import AppContext from './context/AppContext'
 import './App.css'
@@ -18,7 +19,6 @@ function App () {
     supabase.auth.onAuthStateChange((event, session) => {
       if (session) {
         setSigned(true)
-        console.log(state)
       } else {
         setSigned(false)
       }
@@ -33,7 +33,8 @@ function App () {
           <Route path='/' element={<Home />} />
           <Route path='/login' element={signed ? <Navigate to='/add-product' /> : <Login />} />
           <Route path='/add-product' element={signed ? <InsertProduct /> : <Navigate to='/login' />} />
-          <Route path='/product/:category' element={<Home />} />
+          <Route path='/filtered' element={<Filtered />} />
+          <Route path='/product/:category/' element={<Home />} />
           <Route path='/product/:category/:id' element={<ProductInfo />} />
         </Routes>
       </Layout>

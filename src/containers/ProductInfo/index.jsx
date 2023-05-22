@@ -46,7 +46,7 @@ const ProductInfo = () => {
   }
 
   const closeModal = () => {
-    navigate('/')
+    navigate(-1)
   }
 
   if (product === null) {
@@ -73,7 +73,7 @@ const ProductInfo = () => {
                   <div
                     onClick={prevImage}
                     className={styles.previousButton}>
-                    <Icon type='arrow left' />
+                    <Icon type='arrow_left' />
                   </div>
                 )
               }
@@ -82,7 +82,7 @@ const ProductInfo = () => {
                   <div
                     onClick={nextImage}
                     className={styles.nextButton}>
-                    <Icon type='arrow right' />
+                    <Icon type='arrow_right' />
                   </div>
                 )
               }
@@ -102,17 +102,22 @@ const ProductInfo = () => {
             <p className={styles.info_price}>{formattedPrice}</p>
           </div>
           <div className={styles.productDetails}>
+            <div>
+              <p className={styles.itemDetail}>
+                <b className={styles.detail_label}>- Marca:</b>
+                {' '}
+                <span className={styles.detail_value}>{product?.brand}</span>
+              </p>
             {
               product?.details.map(detai => (
-                <div key={`${detai[0]}_${product.rerence}`}>
-                  <p className={styles.itemDetail}>
-                    <b className={styles.detail_label}>-{' '} {detai[0]}{detai[1] && ':'}</b>
-                    {' '}
-                    <span className={styles.detail_value}>{detai[1]}</span>
-                  </p>
-                </div>
+                <p key={`${detai[0]}_${product.rerence}`} className={styles.itemDetail}>
+                  <b className={styles.detail_label}>-{' '} {detai[0]}{detai[1] && ':'}</b>
+                  {' '}
+                  <span className={styles.detail_value}>{detai[1]}</span>
+                </p>
               ))
             }
+            </div>
           </div>
         </section>
         <section className={styles.actions}>

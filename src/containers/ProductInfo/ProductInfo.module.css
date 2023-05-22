@@ -109,6 +109,7 @@
 .detail_value {
   color: #e9e6e6d8;
   font-weight: 500;
+  text-transform: uppercase;
 }
 
 .actions {
