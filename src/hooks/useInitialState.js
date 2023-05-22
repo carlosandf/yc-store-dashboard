@@ -23,7 +23,7 @@ const useInitialState = () => {
   const saveFilterProducts = payload => {
     setState(prevState => ({
       ...prevState,
-      filterProducts: [...payload]
+      filterProducts: payload
     }))
   }
 

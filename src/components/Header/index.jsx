@@ -1,8 +1,8 @@
-import PropTypes from 'prop-types'
 import Icon from '../Icon'
 import styles from './Header.module.css'
 import { useContext, useState } from 'react'
 import AppContext from '../../context/AppContext'
+import { useNavigate, useParams } from 'react-router-dom'
 import Menu from '../Menu'
 
 const inputsInitialState = {
@@ -14,6 +14,8 @@ const Header = () => {
   const [toggle, setToggle] = useState(false)
   const [openFilter, setOpenFilter] = useState(false)
   const [filterData, setFilterData] = useState(inputsInitialState)
+  const [message, setMessage] = useState('')
+  const navigate = useNavigate()
   const { state, saveFilterProducts } = useContext(AppContext)
 
   const handleChange = (evt, target) => {
@@ -32,8 +34,13 @@ const Header = () => {
       return product.price >= min && product.price <= max
     })
 
-    saveFilterProducts(filterProducts)
-    console.log(filterProducts)
+    if (filterProducts.length === 0) {
+      saveFilterProducts([])
+      return setMessage('No hay productos en este rango de precios')
+    }
+    navigate('/filtered')
+    saveFilterProducts([...filterProducts])
+    setOpenFilter(!openFilter)
   }
 
   return (
@@ -54,8 +61,8 @@ const Header = () => {
             <label htmlFor='min' className={styles.inputContainer}>
               <span>Desde</span>
               <input
-                value={filterData.min}
                 onChange={e => handleChange(e, 'min')}
+                value={filterData.min}
                 type='number'
                 id='min'
               />
@@ -63,22 +70,19 @@ const Header = () => {
             <label htmlFor='max' className={styles.inputContainer}>
               <span>Hasta</span>
               <input
-                value={filterData.max}
+                value={filterData.max.toString()}
                 onChange={e => handleChange(e, 'max')}
                 type='number'
                 id='max'
               />
             </label>
           </div>
+          <p className={styles.message}>{message}</p>
           <button>Filtrar</button>
         </form>
       )}
     </header>
   )
-}
-
-Header.propTypes = {
-  signed: PropTypes.bool
 }
 
 export default Header

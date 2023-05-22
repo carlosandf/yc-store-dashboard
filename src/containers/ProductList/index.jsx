@@ -6,7 +6,7 @@ import AppContext from '../../context/AppContext'
 import { useParams } from 'react-router-dom'
 import Loading from '../../components/Loading'
 
-const ProductList = () => {
+const ProductList = ({ path }) => {
   const { state, saveProducts } = useContext(AppContext)
   const [loading, setLoading] = useState(true)
   const { category } = useParams()
@@ -23,22 +23,12 @@ const ProductList = () => {
     })()
   }, [category])
 
-  if (loading) return <Loading />
-
   return (
     <div className={styles.productsContainer}>
       {
-        state.filterProducts.length > 0
-          ? (
-              state.filterProducts.map(product => (
-                <ProductCard key={`${product.id}_card_fiters`} {...product} />
-              ))
-            )
-          : (
-              state.products.map(product => (
-                <ProductCard key={`${product.id}_card`} {...product} />
-              ))
-            )
+        state[path].map(product => (
+          <ProductCard key={`${product.id}_card`} {...product} />
+        ))
       }
     </div>
   )

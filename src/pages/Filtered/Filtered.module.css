@@ -1,0 +1,12 @@
+.productsContainer {
+  margin: 0 auto;
+  display: grid;
+  gap: 0.8rem;
+  width: 100%;
+  max-width: 102rem;
+  grid-template-columns: repeat(auto-fill, minmax(14.5rem, 1fr));
+  grid-auto-rows: 24rem;
+  align-content: center;
+  padding: 0.8rem;
+  justify-content: center;
+}
